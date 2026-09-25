@@ -38,7 +38,10 @@ public class Nim{
     }
 
     // cette méthode retire le nombre d'allumette et change le joueur
-    public void removeMatches(int nbAllumette){.  
+    public void removeMatches(int nbAllumette){
+        if(!isValid(nbAllumette)){
+            return "veuillez vérifier le nombre d'allumette que vous avez saisi dans la méthode isValid"
+        } 
         this.currentAllumette -= nbAllumette;
         if(this.currentPlayer.equals(this.firstPlayer)){
             this.currentPlayer = this.secondPlayer;
