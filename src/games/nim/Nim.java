@@ -45,7 +45,6 @@ public class Nim{
         return k;
     }
 
-
     // methodes 
 
     public String situationToString(){
