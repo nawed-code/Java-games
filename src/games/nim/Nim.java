@@ -37,9 +37,31 @@ public class Nim{
         return "Il reste "+this.currentAllumette+" allumettes";
     }
 
-    public int removeMatches(int nbAllumette){
+    // cette méthode retire le nombre d'allumette et change le joueur
+    public void removeMatches(int nbAllumette){.  
         this.currentAllumette -= nbAllumette;
-        this.currentPlayer = this.secondPlayer;
-        return this.currentAllumette;
+        if(this.currentPlayer.equals(this.firstPlayer)){
+            this.currentPlayer = this.secondPlayer;
+        }
+        else{
+            this.currentPlayer = this.firstPlayer;
+        }
+        
+    }
+
+    public boolean isValid(int nbMatches){
+        return nbMatches > 0 && nbMatches <= this.k && nbMatches <= this.currentAllumette;
+
+    }
+
+    public boolean isOver(){
+        return this.currentAllumette == 0;
+    }
+
+    public String getWinner(){
+        if(this.isOver()){
+            return this.currentPlayer;
+        }
+        return null;
     }
 }
