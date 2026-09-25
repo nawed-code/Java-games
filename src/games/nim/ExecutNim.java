@@ -1,7 +1,6 @@
+package nim;
 import java.util.Scanner;
 
-
-package nim;
 public class ExecutNim{
 
         public static void main(String[] args){
@@ -23,6 +22,22 @@ public class ExecutNim{
 
             Nim play = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
 
+            System.out.println("Nom du premier joueur : "+play.getFirstPlayer());
+            System.out.println("Nom du second joueur : "+play.getSecondPlayer());
+            System.out.println("Nombre maximal : "+play.getMaxMatches());
+
+            while(!play.isOver()){
+                
+                System.out.println(play.situationToString());
+                System.out.println("le tour de "+play.getCurrentPlayer());
+                System.out.println("Combien retirez-vous ? ");
+                String retireAllumete = scanner.next();
+                int nbRetiree = Integer.parseInt(retireAllumete);
+                play.removeMatches(nbRetiree);
+
+            }
+            System.out.println("Le joue est terminé");
+            System.out.println("Le gagneant est : "+play.getWinner());
 
         }
 
