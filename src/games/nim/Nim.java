@@ -1,4 +1,6 @@
 package nim;
+import java.util.Scanner;
+
 public class Nim{
 
     private int n;
@@ -31,6 +33,19 @@ public class Nim{
         return this.currentPlayer;
     }
 
+    // j'ajoute des getters pour que je puisse appeller mes attributs privés 
+
+    public String getFirstPlayer() {
+    return firstPlayer;
+    }
+    public String getSecondPlayer() {
+        return secondPlayer;
+    }
+    public int getMaxMatches() {
+        return k;
+    }
+
+
     // methodes 
 
     public String situationToString(){
@@ -39,7 +54,7 @@ public class Nim{
 
     // cette méthode retire le nombre d'allumette et change le joueur
     public void removeMatches(int nbAllumette){
-        if(!isValid(nbAllumette)){
+        if(!isValid(nbAllumette)){     // vérifie le nombre d'allumette que joueur retire 
             return "veuillez vérifier le nombre d'allumette que vous avez saisi dans la méthode isValid"
         } 
         this.currentAllumette -= nbAllumette;
