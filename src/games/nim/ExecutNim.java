@@ -33,11 +33,16 @@ public class ExecutNim{
                 System.out.println("Combien retirez-vous ? ");
                 String retireAllumete = scanner.next();
                 int nbRetiree = Integer.parseInt(retireAllumete);
+                if (!play.isValid(nbRetiree)){
+                    System.out.println("Coup invalide !");
+                    continue;
+                }
                 play.removeMatches(nbRetiree);
 
             }
-            System.out.println("Le joue est terminé");
-            System.out.println("Le gagneant est : "+play.getWinner());
+            System.out.println("Le jeu est terminé");
+            System.out.println("Le gagnant est : "+play.getWinner());
+            scanner.close();
 
         }
 
