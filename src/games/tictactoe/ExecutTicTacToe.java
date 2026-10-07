@@ -43,6 +43,7 @@ public class ExecutTicTacToe{
         }
         
         System.out.println("Le jeu est terminé");
+        System.out.println(play.situationToString());
         System.out.println("Le gagnant est : "+play.getWinner());
         scanner.close();
 		

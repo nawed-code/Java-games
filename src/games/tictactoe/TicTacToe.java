@@ -47,7 +47,7 @@ public class TicTacToe{
             return false;
         }
         if(grille[lineNumber][columnNumber] != null){
-            //System.out.println("Cette case n'est pas vide !");
+            System.out.println("Cette case n'est pas vide !");
             return false;
         }
         return true;
@@ -57,12 +57,12 @@ public class TicTacToe{
     public String getWinner(){
 		
 		for (int i = 0; i < 3; i++) {
-			if (wins(this.firstPlayer, i, 0, 0, 1) || wins(this.firstPlayer, i, 0, 0, 0)) {
+			if (wins(this.firstPlayer, i, 0, 0, 1) || wins(this.firstPlayer, 0, i, 1, 0)) {
 				return this.firstPlayer;
 			}
 		}
         for (int i = 0; i < 3; i++) {
-			if (wins(this.secondPlayer, i, 0, 0, 1) || wins(this.secondPlayer, i, 0, 0, 0)) {
+			if (wins(this.secondPlayer, i, 0, 0, 1) || wins(this.secondPlayer, 0, i, 1, 0)) {
 				return this.secondPlayer;
 			}
 		}
@@ -75,6 +75,7 @@ public class TicTacToe{
 			return this.secondPlayer;
 		}
 		// Personne n'a gagné
+        //System.out.println("Match null !");
 		return null;
 		
     }
@@ -104,7 +105,7 @@ public class TicTacToe{
 		}
 		for(int i=0; i < 3;i++){
 			for(int j =0;j< 3;j++){
-				if(this.grille[i][j] == null){
+				if(this.grille[i][j] == null){   // au moins une case est vide 
 					return false;
 				}
 			}
@@ -118,7 +119,7 @@ public class TicTacToe{
 		for(int i=0; i < 3;i++){
 			for(int j =0;j< 3;j++){
 				if(this.grille[i][j] == null){
-                    plateau +="_";
+                    plateau +=".";
                 }
                 else{
                     plateau += this.grille[i][j];
