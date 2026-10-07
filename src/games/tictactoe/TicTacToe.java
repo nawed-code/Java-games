@@ -117,7 +117,12 @@ public class TicTacToe{
 		String plateau = "";
 		for(int i=0; i < 3;i++){
 			for(int j =0;j< 3;j++){
-				plateau += this.grille[i][j];
+				if(this.grille[i][j] == null){
+                    plateau +="_";
+                }
+                else{
+                    plateau += this.grille[i][j];
+                }
 			
 			}
 			plateau +=System.lineSeparator();
