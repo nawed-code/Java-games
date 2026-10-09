@@ -1,4 +1,4 @@
-package nim;
+package games.nim;
 import java.util.Scanner;
 
 public class Nim{

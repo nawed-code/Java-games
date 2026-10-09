@@ -1,4 +1,4 @@
-package tictactoe;
+package gamestests.tictactoe;
 import gamestests.tictactoe.TicTacToeWithHintsTests;
 
 public class TicTacToeWithHintsTest{
