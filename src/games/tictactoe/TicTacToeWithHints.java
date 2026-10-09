@@ -39,4 +39,30 @@ public class TicTacToeWithHints extends TicTacToe{
         return l;
 
     }
+
+    public String situationToString(){
+
+        ArrayList<Integer> l = hints();
+		String[][] grille = getGrille();
+		String plateau = "";
+		for(int i=0; i < 3;i++){
+			for(int j =0;j< 3;j++){
+				if(grille[i][j] == null && l.contains(3*i+j)){
+                    plateau +="!";
+                }
+                else if(grille[i][j] == null){
+                    plateau +=".";
+                }
+                else{
+                    plateau += grille[i][j];
+                }
+			
+			}
+			plateau +=System.lineSeparator();
+			
+		}
+		return plateau;
+	}
+
+
 }
