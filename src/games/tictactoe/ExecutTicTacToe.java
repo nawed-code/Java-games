@@ -1,5 +1,7 @@
-package tictactoe;
+package games.tictactoe;
 import java.util.Scanner;
+
+
 
 
 public class ExecutTicTacToe{
@@ -7,13 +9,20 @@ public class ExecutTicTacToe{
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
 		
+                System.out.println("Voulez-vous jouer avec ou sans indices ? oui / non ");
+                String answer = scanner.next();
+
 		System.out.println("Entrez le premier joueur :");
                 String j1 = scanner.next();
 
                 System.out.println("Entrez le deuxième joueur :");
                 String j2 = scanner.next();
-                
-                TicTacToe play = new TicTacToe(j1,j2);
+                TicTacToe play;
+                if (answer.equals("oui")) {
+                        play = new TicTacToeWithHints(j1,j2);
+                } else {
+                        play = new TicTacToe(j1,j2);
+                }
                 System.out.println("Nom du premier joueur : "+play.getFirstPlayer());
                 System.out.println("Nom du second joueur : "+play.getSecondPlayer());
                 

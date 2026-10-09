@@ -1,6 +1,5 @@
-package tictactoe;
+package games.tictactoe;
 import java.util.ArrayList;
-import tictactoe.TicTacToe;
 
 public class TicTacToeWithHints extends TicTacToe{
     
@@ -63,6 +62,5 @@ public class TicTacToeWithHints extends TicTacToe{
 		}
 		return plateau;
 	}
-
 
 }

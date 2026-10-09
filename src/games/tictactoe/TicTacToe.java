@@ -1,4 +1,4 @@
-package tictactoe;
+package games.tictactoe;
 
 public class TicTacToe{
 
@@ -19,8 +19,12 @@ public class TicTacToe{
         return currentPlayer;
     }
     
+    // ajoute des setters pour modifier la grille depuis l'extérieur
+    public void setGrille(int lineNumber, int columnNumber , String motif){
+        this.grille[lineNumber][columnNumber] = motif;
+    }
+
     // ajoute des getters pour les nom de joueurs 
-    
     public String getFirstPlayer(){
 		return this.firstPlayer;
 	}
@@ -28,6 +32,11 @@ public class TicTacToe{
 	public String getSecondPlayer(){
 		return this.secondPlayer;
 	}
+
+    // ajoute un getter pour grill
+    public String[][] getGrille(){
+        return this.grille;
+    }
 
 
     public void execute(int lineNumber, int columnNumber){
@@ -47,7 +56,7 @@ public class TicTacToe{
             return false;
         }
         if(grille[lineNumber][columnNumber] != null){
-            System.out.println("Cette case n'est pas vide !");
+            //System.out.println("Cette case n'est pas vide !");
             return false;
         }
         return true;
