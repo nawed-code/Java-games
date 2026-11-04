@@ -1,6 +1,6 @@
 package factoredgames.AbstractGame;
 
-public class AbstractGame{
+abstract class AbstractGame{
 
     private String firstPlayer;
     private String secondPlayer;
@@ -13,21 +13,22 @@ public class AbstractGame{
 
     }
 
-    protected void doExecute(int caseNumber){
-        if(caseNumber > 8 ){
-            System.out.println("Cette case n'existe pas");
-            return;
-        }
-        lineNumber = caseNumber / 3;
-        columnNumber = caseNumber % 3; 
-        if(this.firstPlayer.equals(this.currentPlayer())){
-            this.grille[lineNumber][columnNumber] = "x";
+    protected abstract void doExecute(int caseNumber);
+
+    public void execute(int caseNumber){
+        doExecute(caseNumber);
+        if(this.firstPlayer.equals(this.getCurrentPlayer())){
+            this.currentPlayer = this.secondPlayer;
         }
         else{
-            this.grille[lineNumber][columnNumber] = "o";
-            
+            this.currentPlayer = this.firstPlayer;
         }
     }
+
+    public Stirng getCurrentPlayer(){
+        return this.currentPlayer;
+    }
+
 }
 
 
