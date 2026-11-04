@@ -39,7 +39,13 @@ public class TicTacToe{
     }
 
 
-    public void execute(int lineNumber, int columnNumber){
+    public void execute(int caseNumber){
+        if(caseNumber > 8 ){
+            System.out.println("Cette case n'existe pas");
+            return;
+        }
+        lineNumber = caseNumber / 3;
+        columnNumber = caseNumber % 3; 
         if(this.firstPlayer.equals(this.getCurrentPlayer())){
             this.grille[lineNumber][columnNumber] = "x";
             this.currentPlayer = this.secondPlayer;
@@ -50,7 +56,10 @@ public class TicTacToe{
         }
     }
 
-    public boolean isValid(int lineNumber,int columnNumber){
+    public boolean isValid(int caseNumber){
+        
+        lineNumber = caseNumber / 3;
+        columnNumber = caseNumber % 3; 
         if(lineNumber >= 3 || lineNumber < 0 || columnNumber >= 3 || columnNumber < 0){
             //System.out.println("Cette indice n'existe pas !");
             return false;
