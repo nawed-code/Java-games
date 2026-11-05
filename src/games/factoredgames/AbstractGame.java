@@ -16,7 +16,7 @@ public abstract class AbstractGame{
     protected abstract void doExecute(int n);
 
     public void execute(int n){
-        doExecute( n);
+        doExecute(n);
         if(this.firstPlayer.equals(this.getCurrentPlayer())){
             this.currentPlayer = this.secondPlayer;
         }
@@ -27,6 +27,14 @@ public abstract class AbstractGame{
 
     public String getCurrentPlayer(){
         return this.currentPlayer;
+    }
+
+    public String getFirstPlayer(){
+        return this.firstPlayer;
+    } 
+
+    public String getSecondPlayer(){
+        return this.secondPlayer;
     }
 
 }
