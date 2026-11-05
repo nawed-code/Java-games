@@ -1,22 +1,20 @@
-package factoredgames.nim;
-import java.util.Scanner;
+package games.factoredgames;
 
-public class Nim{
+
+
+public class Nim extends AbstractGame{
 
     private int n;
     private int k;
-    private String firstPlayer;
-    private String secondPlayer;
     private int currentAllumette;
-    private String currentPlayer;
+    
     
     public Nim(int taille, int nbMaxAllumette, String j1,String j2){
-        this.firstPlayer = j1;
-        this.secondPlayer = j2;
+        super(j1 , j2);
         this.n = taille;
         this.k = nbMaxAllumette;
         this.currentAllumette = taille;
-        this.currentPlayer = j1;
+        
     }
 
     // accesseurs 
@@ -28,19 +26,17 @@ public class Nim{
     public int getCurrentNbMatches(){
         return this.currentAllumette;
     }
+    // j'ajoute des getters pour que je puisse appeller mes attributs 
 
-    public String getCurrentPlayer(){
-        return this.currentPlayer;
-    }
-
-    // j'ajoute des getters pour que je puisse appeller mes attributs privés 
-
+    /* 
     public String getFirstPlayer() {
-    return firstPlayer;
+    return super.firstPlayer;
     }
     public String getSecondPlayer() {
-        return secondPlayer;
+        return super.secondPlayer;
     }
+    */
+
     public int getMaxMatches() {
         return k;
     }
@@ -52,16 +48,17 @@ public class Nim{
     }
 
     // cette méthode retire le nombre d'allumette et change le joueur
-    public void removeMatches(int nbAllumette){
+    @Override 
+    public void execute(int nbAllumette){
         if(!isValid(nbAllumette)){     // vérifie le nombre d'allumette que joueur retire 
             System.out.println("Coup invalid !");
         } 
         this.currentAllumette -= nbAllumette;
-        if(this.currentPlayer.equals(this.firstPlayer)){
-            this.currentPlayer = this.secondPlayer;
+        if(super.currentPlayer.equals(super.firstPlayer)){
+            super.currentPlayer = super.secondPlayer;
         }
         else{
-            this.currentPlayer = this.firstPlayer;
+            super.currentPlayer = super.firstPlayer;
         }
         
     }
@@ -77,7 +74,7 @@ public class Nim{
 
     public String getWinner(){
         if(this.isOver()){
-            return this.currentPlayer;
+            return super.currentPlayer;
         }
         return null;
     }
