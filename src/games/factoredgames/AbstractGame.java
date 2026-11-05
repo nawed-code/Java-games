@@ -1,10 +1,10 @@
-package factoredgames.AbstractGame;
+package games.factoredgames;
 
-abstract class AbstractGame{
+public abstract class AbstractGame{
 
-    private String firstPlayer;
-    private String secondPlayer;
-    private String currentPlayer;
+    protected  String firstPlayer;
+    protected String secondPlayer;
+    protected String currentPlayer;
 
     public AbstractGame(String j1, String j2){
         this.firstPlayer = j1;
@@ -13,10 +13,10 @@ abstract class AbstractGame{
 
     }
 
-    protected abstract void doExecute(int caseNumber);
+    protected abstract void doExecute(int n);
 
-    public void execute(int caseNumber){
-        doExecute(caseNumber);
+    public void execute(int n){
+        doExecute( n);
         if(this.firstPlayer.equals(this.getCurrentPlayer())){
             this.currentPlayer = this.secondPlayer;
         }
@@ -25,7 +25,7 @@ abstract class AbstractGame{
         }
     }
 
-    public Stirng getCurrentPlayer(){
+    public String getCurrentPlayer(){
         return this.currentPlayer;
     }
 
