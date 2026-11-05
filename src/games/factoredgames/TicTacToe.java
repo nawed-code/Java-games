@@ -1,44 +1,37 @@
-package factoredgames.tictactoe;
+package games.factoredgames;
 
-public class TicTacToe{
+public class TicTacToe extends AbstractGame{
 
-    private String firstPlayer;
-    private String secondPlayer;
     private String[][] grille;
-    private String currentPlayer;
-
     public TicTacToe( String player1,String player2 ){
-        this.firstPlayer = player1;
-        this.secondPlayer= player2;
+        super(player1, player2);
         this.grille = new String[3][3];
-        this.currentPlayer = player1; 
     }
 
     // accesseurs
-    public String getCurrentPlayer(){
-        return currentPlayer;
-    }
     
     // ajoute des setters pour modifier la grille depuis l'extérieur
     public void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
 
+    /* 
     // ajoute des getters pour les nom de joueurs 
     public String getFirstPlayer(){
-		return this.firstPlayer;
+		return super.firstPlayer;
 	}
 	
 	public String getSecondPlayer(){
-		return this.secondPlayer;
+		return super.secondPlayer;
 	}
+    */
 
     // ajoute un getter pour grill
     public String[][] getGrille(){
         return this.grille;
     }
 
-
+    @Override 
     public void execute(int caseNumber){
         if(caseNumber > 8 ){
             System.out.println("Cette case n'existe pas");
@@ -46,13 +39,13 @@ public class TicTacToe{
         }
         lineNumber = caseNumber / 3;
         columnNumber = caseNumber % 3; 
-        if(this.firstPlayer.equals(this.getCurrentPlayer())){
+        if(super.firstPlayer.equals(super.getCurrentPlayer())){
             this.grille[lineNumber][columnNumber] = "x";
-            this.currentPlayer = this.secondPlayer;
+            super.currentPlayer = super.secondPlayer;
         }
         else{
             this.grille[lineNumber][columnNumber] = "o";
-            this.currentPlayer = this.firstPlayer;
+            super.currentPlayer = super.firstPlayer;
         }
     }
 
@@ -75,22 +68,22 @@ public class TicTacToe{
     public String getWinner(){
 		
 		for (int i = 0; i < 3; i++) {
-			if (wins(this.firstPlayer, i, 0, 0, 1) || wins(this.firstPlayer, 0, i, 1, 0)) {
-				return this.firstPlayer;
+			if (wins(super.firstPlayer, i, 0, 0, 1) || wins(super.firstPlayer, 0, i, 1, 0)) {
+				return super.firstPlayer;
 			}
 		}
         for (int i = 0; i < 3; i++) {
-			if (wins(this.secondPlayer, i, 0, 0, 1) || wins(this.secondPlayer, 0, i, 1, 0)) {
-				return this.secondPlayer;
+			if (wins(super.secondPlayer, i, 0, 0, 1) || wins(super.secondPlayer, 0, i, 1, 0)) {
+				return super.secondPlayer;
 			}
 		}
 
 		// Diagonales 
-		if (wins(this.firstPlayer, 0, 0, 1, 1) || wins(this.firstPlayer, 0, 2, 1, -1)) {
+		if (wins(super.firstPlayer, 0, 0, 1, 1) || wins(super.firstPlayer, 0, 2, 1, -1)) {
 			return this.firstPlayer;
 		}
-        if (wins(this.secondPlayer, 0, 0, 1, 1) || wins(this.secondPlayer, 0, 2, 1, -1)) {
-			return this.secondPlayer;
+        if (wins(super.secondPlayer, 0, 0, 1, 1) || wins(super.secondPlayer, 0, 2, 1, -1)) {
+			return super.secondPlayer;
 		}
 		// Personne n'a gagné
         //System.out.println("Match null !");
@@ -100,7 +93,7 @@ public class TicTacToe{
 
     public boolean wins(String player, int lineNumber,int columnNumber, int deltaRow, int deltaColumn){
         String motif="";
-        if(this.firstPlayer.equals(player)){
+        if(super.firstPlayer.equals(player)){
             motif = "x";
         }
         else{
