@@ -10,21 +10,10 @@ public class TicTacToe extends AbstractGame{
 
     // accesseurs
     
-    // ajoute des setters pour modifier la grille depuis l'extérieur
+    // ajoute des setters pour modifier la grille depuis l exterieur
     public void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
-
-    /* 
-    // ajoute des getters pour les nom de joueurs 
-    public String getFirstPlayer(){
-		return super.firstPlayer;
-	}
-	
-	public String getSecondPlayer(){
-		return super.secondPlayer;
-	}
-    */
 
     // ajoute un getter pour grill
     public String[][] getGrille(){
@@ -32,33 +21,32 @@ public class TicTacToe extends AbstractGame{
     }
 
     @Override 
-    public void execute(int caseNumber){
-        if(caseNumber > 8 ){
-            System.out.println("Cette case n'existe pas");
+    public void doExecute(int caseNumber){
+        if(!isValid(caseNumber) ){                // verifie le numero de case 
+            System.out.println("Coup invalide !");
             return;
         }
-        lineNumber = caseNumber / 3;
-        columnNumber = caseNumber % 3; 
-        if(super.firstPlayer.equals(super.getCurrentPlayer())){
+        int lineNumber = caseNumber / 3;
+        int columnNumber = caseNumber % 3; 
+        if(getFirstPlayer().equals(getCurrentPlayer())){
             this.grille[lineNumber][columnNumber] = "x";
-            super.currentPlayer = super.secondPlayer;
         }
         else{
             this.grille[lineNumber][columnNumber] = "o";
-            super.currentPlayer = super.firstPlayer;
+            
         }
     }
 
     public boolean isValid(int caseNumber){
         
-        lineNumber = caseNumber / 3;
-        columnNumber = caseNumber % 3; 
+        int lineNumber = caseNumber / 3;
+        int columnNumber = caseNumber % 3; 
         if(lineNumber >= 3 || lineNumber < 0 || columnNumber >= 3 || columnNumber < 0){
-            //System.out.println("Cette indice n'existe pas !");
+            //System.out.println("Cette indice n existe pas !");
             return false;
         }
         if(grille[lineNumber][columnNumber] != null){
-            //System.out.println("Cette case n'est pas vide !");
+            //System.out.println("Cette case n est pas vide !");
             return false;
         }
         return true;
@@ -68,24 +56,24 @@ public class TicTacToe extends AbstractGame{
     public String getWinner(){
 		
 		for (int i = 0; i < 3; i++) {
-			if (wins(super.firstPlayer, i, 0, 0, 1) || wins(super.firstPlayer, 0, i, 1, 0)) {
-				return super.firstPlayer;
+			if (wins(getFirstPlayer(), i, 0, 0, 1) || wins(getFirstPlayer(), 0, i, 1, 0)) {
+				return getFirstPlayer();
 			}
 		}
         for (int i = 0; i < 3; i++) {
-			if (wins(super.secondPlayer, i, 0, 0, 1) || wins(super.secondPlayer, 0, i, 1, 0)) {
-				return super.secondPlayer;
+			if (wins(getSecondPlayer(), i, 0, 0, 1) || wins(getSecondPlayer(), 0, i, 1, 0)) {
+				return getSecondPlayer();
 			}
 		}
 
 		// Diagonales 
-		if (wins(super.firstPlayer, 0, 0, 1, 1) || wins(super.firstPlayer, 0, 2, 1, -1)) {
-			return this.firstPlayer;
+		if (wins(getFirstPlayer(), 0, 0, 1, 1) || wins(getFirstPlayer(), 0, 2, 1, -1)) {
+			return getFirstPlayer();
 		}
-        if (wins(super.secondPlayer, 0, 0, 1, 1) || wins(super.secondPlayer, 0, 2, 1, -1)) {
-			return super.secondPlayer;
+        if (wins(getSecondPlayer(), 0, 0, 1, 1) || wins(getSecondPlayer(), 0, 2, 1, -1)) {
+			return getSecondPlayer();
 		}
-		// Personne n'a gagné
+		// Personne n a gagne
         //System.out.println("Match null !");
 		return null;
 		
@@ -93,7 +81,7 @@ public class TicTacToe extends AbstractGame{
 
     public boolean wins(String player, int lineNumber,int columnNumber, int deltaRow, int deltaColumn){
         String motif="";
-        if(super.firstPlayer.equals(player)){
+        if(getFirstPlayer().equals(player)){
             motif = "x";
         }
         else{
@@ -126,7 +114,7 @@ public class TicTacToe extends AbstractGame{
 	}
     public String situationToString(){
 		
-		String plateau = "";
+		String plateau = "   0 1 2" + System.lineSeparator();
 		for(int i=0; i < 3;i++){
 			for(int j =0;j< 3;j++){
 				if(this.grille[i][j] == null){

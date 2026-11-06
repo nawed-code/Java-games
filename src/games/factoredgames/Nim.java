@@ -26,16 +26,6 @@ public class Nim extends AbstractGame{
     public int getCurrentNbMatches(){
         return this.currentAllumette;
     }
-    // j'ajoute des getters pour que je puisse appeller mes attributs 
-
-    /* 
-    public String getFirstPlayer() {
-    return super.firstPlayer;
-    }
-    public String getSecondPlayer() {
-        return super.secondPlayer;
-    }
-    */
 
     public int getMaxMatches() {
         return k;
@@ -47,21 +37,15 @@ public class Nim extends AbstractGame{
         return "Il reste "+this.currentAllumette+" allumettes";
     }
 
-    // cette méthode retire le nombre d'allumette et change le joueur
+    // cette methode retire le nombre d allumette 
     @Override 
-    public void execute(int nbAllumette){
-        if(!isValid(nbAllumette)){     // vérifie le nombre d'allumette que joueur retire 
+    protected void doExecute(int nbAllumette){
+        if(!isValid(nbAllumette)){              // verifie le nombre d allumette que joueur retire 
             System.out.println("Coup invalid !");
+            return ;
         } 
         this.currentAllumette -= nbAllumette;
-        if(super.currentPlayer.equals(super.firstPlayer)){
-            super.currentPlayer = super.secondPlayer;
-        }
-        else{
-            super.currentPlayer = super.firstPlayer;
-        }
-        
-    }
+    }  
 
     public boolean isValid(int nbMatches){
         return nbMatches > 0 && nbMatches <= this.k && nbMatches <= this.currentAllumette;
