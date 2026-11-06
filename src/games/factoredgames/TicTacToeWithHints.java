@@ -1,4 +1,4 @@
-package factoredgames.tictactoe;
+package games.factoredgames;
 import java.util.ArrayList;
 
 public class TicTacToeWithHints extends TicTacToe{
@@ -7,7 +7,7 @@ public class TicTacToeWithHints extends TicTacToe{
         super(player1, player2);
     }
 
-    // les méthode 
+    // les mthodes 
     public ArrayList<Integer> hints(){
 
         ArrayList<Integer> l = new ArrayList<>();
@@ -43,23 +43,25 @@ public class TicTacToeWithHints extends TicTacToe{
 
         ArrayList<Integer> l = hints();
 		String[][] grille = getGrille();
-		String plateau = "";
+		String plateau = "  - - -" + System.lineSeparator();
 		for(int i=0; i < 3;i++){
+            plateau = plateau+"| ";
 			for(int j =0;j< 3;j++){
 				if(grille[i][j] == null && l.contains(3*i+j)){
-                    plateau +="!";
+                    plateau +="! ";
                 }
                 else if(grille[i][j] == null){
-                    plateau +=".";
+                    plateau =plateau+(3*i+j)+" ";
                 }
                 else{
-                    plateau += grille[i][j];
+                    plateau =plateau+ grille[i][j]+" ";
                 }
 			
 			}
-			plateau +=System.lineSeparator();
+			plateau =plateau+" |"+System.lineSeparator();
 			
 		}
+        plateau = plateau+"  - - -" + System.lineSeparator();
 		return plateau;
 	}
 
