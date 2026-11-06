@@ -4,31 +4,32 @@ public class ExecutTicTacToe{
 	
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
-                String answer;
-                
-                TicTacToe play;
-                boolean valide = false;
-                do{
-                        System.out.println("Voulez-vous jouer avec ou sans indices ? oui / non ");
-                        answer = scanner.next();
-                        if (answer.equals("oui")) {
-                                play = new TicTacToeWithHints(j1,j2);
-                                valide = true;
 
-                        }
-                        else if (answer.equals("non")) {
-                                play = new TicTacToe(j1, j2);
-                                valide = true;                       
-                        }
-
-                }while(valide);
-                
-
-		System.out.println("Entrez le premier joueur :");
+                System.out.println("Entrez le premier joueur :");
                 String j1 = scanner.next();
 
                 System.out.println("Entrez le deuxieme joueur :");
                 String j2 = scanner.next();
+                
+                String answer;
+                TicTacToe play;
+                while(true){
+
+                        System.out.println("Voulez-vous jouer avec ou sans indices ? oui / non ");
+                        answer = scanner.next();
+
+                        if(answer.equals("oui")){
+                                play = new TicTacToeWithHints(j1,j2);
+                                break;
+                        }
+                        else if(answer.equals("non")){
+                                play = new TicTacToe(j1,j2);
+                                break;
+                        }
+                        else{
+                                System.out.println("Réponse invalide !");
+                        }
+                }
 
                 System.out.println("Nom du premier joueur : "+play.getFirstPlayer());
                 System.out.println("Nom du second joueur : "+play.getSecondPlayer());
