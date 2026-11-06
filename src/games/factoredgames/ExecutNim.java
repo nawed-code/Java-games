@@ -1,4 +1,4 @@
-package factoredgames.nim;
+package games.factoredgames;
 import java.util.Scanner;
 
 public class ExecutNim{
@@ -9,16 +9,14 @@ public class ExecutNim{
             System.out.println("Entrez le premier joueur :");
             String j1 = scanner.next();
 
-            System.out.println("Entrez le deuxième joueur :");
+            System.out.println("Entrez le deuxieme joueur :");
             String j2 = scanner.next();   
 
-            System.out.println("Entrez la taille initiale d'allumettes :");
-            String initialTaile  = scanner.next();
-            int nbInitialTaile = Integer.parseInt(initialTaile);
+            System.out.println("Entrez la taille initiale allumettes :");
+            int nbInitialTaile  = scanner.nextInt();
 
-            System.out.println("Entrez le nombre maximale d'allumettes :");
-            String maxAllumette  = scanner.next();
-            int nbMaxAllumette = Integer.parseInt(maxAllumette);
+            System.out.println("Entrez le nombre maximale d allumettes :");
+            int nbMaxAllumette  = scanner.nextInt();
 
             Nim play = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
 
@@ -30,17 +28,21 @@ public class ExecutNim{
                 
                 System.out.println(play.situationToString());
                 System.out.println("le tour de "+play.getCurrentPlayer());
-                System.out.println("Combien retirez-vous ? ");
-                String retireAllumete = scanner.next();
-                int nbRetiree = Integer.parseInt(retireAllumete);
-                if (!play.isValid(nbRetiree)){
-                    System.out.println("Coup invalide !");
-                    continue;
-                }
-                play.removeMatches(nbRetiree);
+                int nbRetiree;
+                do{
+                    System.out.println("Combien retirez-vous ? ");
+                    nbRetiree = scanner.nextInt();
+                    if (!play.isValid(nbRetiree)){
+                        System.out.println("Vous devez retirer entre 1 et "+ play.getMaxMatches() + " allumettes.");
+                    
+                    }
+
+                }while(!play.isValid(nbRetiree));
+                
+                play.execute(nbRetiree);
 
             }
-            System.out.println("Le jeu est terminé");
+            System.out.println("Le jeu est termine");
             System.out.println("Le gagnant est : "+play.getWinner());
             scanner.close();
 
