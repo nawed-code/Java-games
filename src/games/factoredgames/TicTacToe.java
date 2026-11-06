@@ -114,20 +114,22 @@ public class TicTacToe extends AbstractGame{
 	}
     public String situationToString(){
 		
-		String plateau = "   0 1 2" + System.lineSeparator();
+		String plateau = "  - - -" + System.lineSeparator();
 		for(int i=0; i < 3;i++){
+            plateau = plateau+"| ";
 			for(int j =0;j< 3;j++){
 				if(this.grille[i][j] == null){
-                    plateau +=".";
+                    plateau =plateau+(3*i+j)+" ";
                 }
                 else{
-                    plateau += this.grille[i][j];
+                    plateau = plateau+this.grille[i][j]+" ";
                 }
 			
 			}
-			plateau +=System.lineSeparator();
+			plateau = plateau+" |"+System.lineSeparator();
 			
 		}
+        plateau = plateau+"  - - -";
 		return plateau;
 	}
     
