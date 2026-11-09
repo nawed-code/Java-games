@@ -1,12 +1,14 @@
 package games.genericgames;
 
-public abstract class AbstractGame{
+import games.players.Player;
 
-    protected  String firstPlayer;
-    protected String secondPlayer;
-    protected String currentPlayer;
+public abstract class AbstractGame implements Game{
 
-    public AbstractGame(String j1, String j2){
+    protected  Player firstPlayer;
+    protected Player secondPlayer;
+    protected Player currentPlayer;
+
+    public AbstractGame(Player j1, Player j2){
         this.firstPlayer = j1;
         this.secondPlayer = j2;
         this.currentPlayer = j1;
@@ -24,16 +26,16 @@ public abstract class AbstractGame{
             this.currentPlayer = this.firstPlayer;
         }
     }
-
-    public String getCurrentPlayer(){
+    @Override 
+    public Player getCurrentPlayer(){
         return this.currentPlayer;
     }
 
-    public String getFirstPlayer(){
+    public Player getFirstPlayer(){
         return this.firstPlayer;
     } 
 
-    public String getSecondPlayer(){
+    public Player getSecondPlayer(){
         return this.secondPlayer;
     }
 
