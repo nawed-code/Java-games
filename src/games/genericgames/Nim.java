@@ -87,4 +87,15 @@ public class Nim extends AbstractGame{
             return moveList;
         }
     }
+
+    public String moveToString(int move){
+        /**
+        * Retourne une representation sous forme de chaine du coup donne.
+        *
+        * @param move le coup a convertir en chaine de caracteres
+        * @return une chaine representant le coup
+        */
+        
+        return "Retire "+move+" allumettes";
+    }
 }
