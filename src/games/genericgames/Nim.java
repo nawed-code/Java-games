@@ -1,15 +1,19 @@
 package games.genericgames;
 
+import games.players.Player;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class Nim extends AbstractGame{
+    //Comme AbstractGame implémente Game, toutes les classes qui héritent de AbstractGame sont aussi des Game.
 
     private int n;
     private int k;
     private int currentAllumette;
     
     
-    public Nim(int taille, int nbMaxAllumette, String j1,String j2){
+    public Nim(int taille, int nbMaxAllumette, Player j1,Player j2){
         super(j1 , j2);
         this.n = taille;
         this.k = nbMaxAllumette;
@@ -32,7 +36,7 @@ public class Nim extends AbstractGame{
     }
 
     // methodes 
-
+    @Override 
     public String situationToString(){
         return "Il reste "+this.currentAllumette+" allumettes";
     }
@@ -46,20 +50,41 @@ public class Nim extends AbstractGame{
         } 
         this.currentAllumette -= nbAllumette;
     }  
-
+    @Override 
     public boolean isValid(int nbMatches){
         return nbMatches > 0 && nbMatches <= this.k && nbMatches <= this.currentAllumette;
 
     }
-
+    @Override 
     public boolean isOver(){
         return this.currentAllumette == 0;
     }
 
-    public String getWinner(){
+    @Override 
+    public Player getWinner(){
         if(this.isOver()){
             return super.currentPlayer;
         }
         return null;
+    }
+
+    @Override 
+    public List<Integer> validMoves(){
+        
+        List<Integer> moveList = new ArrayList<>(); 
+        if(this.currentAllumette >= this.k){
+            
+            for(int i=0; i <= this.k -1; i++){
+                moveList.add(i+1);
+            }
+            return moveList;
+        }
+        else{
+            
+            for(int i=0; i <= this.currentAllumette -1; i++){
+                moveList.add(i+1);
+            }
+            return moveList;
+        }
     }
 }
