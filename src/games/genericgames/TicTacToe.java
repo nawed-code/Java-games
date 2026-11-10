@@ -1,5 +1,7 @@
 package games.genericgames;
 
+import games.players.Player;
+
 public class TicTacToe extends AbstractGame{
 
     private String[][] grille;
@@ -36,7 +38,7 @@ public class TicTacToe extends AbstractGame{
             
         }
     }
-
+    @Override 
     public boolean isValid(int caseNumber){
         
         int lineNumber = caseNumber / 3;
@@ -52,8 +54,8 @@ public class TicTacToe extends AbstractGame{
         return true;
         
     }
-
-    public String getWinner(){
+    @Override 
+    public Player getWinner(){
 		
 		for (int i = 0; i < 3; i++) {
 			if (wins(getFirstPlayer(), i, 0, 0, 1) || wins(getFirstPlayer(), 0, i, 1, 0)) {
@@ -97,6 +99,7 @@ public class TicTacToe extends AbstractGame{
 
     }
     
+    @Override 
     public boolean isOver(){
 		
 		if(this.getWinner() != null){
@@ -112,24 +115,37 @@ public class TicTacToe extends AbstractGame{
 		return true;
 		
 	}
+    @Override 
     public String situationToString(){
 		
-		String plateau = "   0 1 2" + System.lineSeparator();
+		String plateau = "  - - -" + System.lineSeparator();
 		for(int i=0; i < 3;i++){
+            plateau = plateau+"| ";
 			for(int j =0;j< 3;j++){
 				if(this.grille[i][j] == null){
-                    plateau +=".";
+                    plateau =plateau+(3*i+j)+" ";
                 }
                 else{
-                    plateau += this.grille[i][j];
+                    plateau = plateau+this.grille[i][j]+" ";
                 }
 			
 			}
-			plateau +=System.lineSeparator();
+			plateau = plateau+" |"+System.lineSeparator();
 			
 		}
+        plateau = plateau+"  - - -";
 		return plateau;
 	}
+    @Override 
+    public String moveToString(int move){
+        return "Le joueur joue la case "+move;
+    }
+
+    @Override 
+    public Game copy(){
+        TicTacToe copyGame = new TicTacToe(getFirstPlayer() , getSecondPlayer());
+        
+    }
     
     
     
