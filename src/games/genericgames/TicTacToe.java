@@ -1,5 +1,8 @@
 package games.genericgames;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import games.players.Player;
 
 public class TicTacToe extends AbstractGame{
@@ -136,6 +139,20 @@ public class TicTacToe extends AbstractGame{
         plateau = plateau+"  - - -";
 		return plateau;
 	}
+    
+    @Override 
+    public List<Integer> validMoves(){
+        List<Integer> moveList = new ArrayList<>();
+        for(int i=0;i< 3;i++){
+            for(int j=0;j<3; j++){
+                if(this.grille[i][j] == null){
+                    moveList.add(3*i+j);
+                }
+            }
+        }
+        return moveList;
+    }
+
     @Override 
     public String moveToString(int move){
         return "Le joueur joue la case "+move;
