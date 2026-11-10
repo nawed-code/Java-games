@@ -8,9 +8,9 @@ import java.util.List;
 public class Nim extends AbstractGame{
     //Comme AbstractGame implémente Game, toutes les classes qui héritent de AbstractGame sont aussi des Game.
 
-    private int n;
-    private int k;
-    private int currentAllumette;
+    protected  int n;
+    protected int k;
+    protected int currentAllumette;
     
     
     public Nim(int taille, int nbMaxAllumette, Player j1,Player j2){
@@ -38,12 +38,21 @@ public class Nim extends AbstractGame{
     // methodes 
     @Override 
     public String situationToString(){
-        return "Il reste "+this.currentAllumette+" allumettes";
+
+        String situation = "Le nouvelle partie :"+System.lineSeparator();
+        situation+= this.getInitialNbMatches()+" allumettes au depart"+lineSeparator();
+        situation+= this.getCurrentNbMatches()+" allumetes restants"+lineSeparator();
+        situation+= this.getMaxMatches()+" maximume"+lineSeparator();
+        situation+= this.getFirstPlayer()+" est premier joueur"+lineSeparator();
+        situation+= this.getSecondPlayer()+" est deuxième joueur"+lineSeparator();
+        return situation;
+
+        //return "Il reste "+this.currentAllumette+" allumettes";
     }
 
     // cette methode retire le nombre d allumette 
     @Override 
-    protected void doExecute(int nbAllumette){
+    public  void execute(int nbAllumette){
         if(!isValid(nbAllumette)){              // verifie le nombre d allumette que joueur retire 
             System.out.println("Coup invalid !");
             return ;
@@ -87,7 +96,7 @@ public class Nim extends AbstractGame{
             return moveList;
         }
     }
-
+    @Override 
     public String moveToString(int move){
         /**
         * Retourne une representation sous forme de chaine du coup donne.
@@ -98,4 +107,20 @@ public class Nim extends AbstractGame{
         
         return "Retire "+move+" allumettes";
     }
+
+    @Override 
+    public Game copy(){
+        /**
+         * Retourne une copie de la partie dans son etat actuel.
+         *
+         * @return une nouvelle instance du jeu ayant le meme etat que la partie courante
+         */
+
+        Nim copyGame = new Nim(this.getInitialNbMatches(), this.getMaxMatches(), getFirstPlayer(), getSecondPlayer());
+        copyGame.currentAllumette = this.getCurrentNbMatches();
+        copyGame.currentPlayer = super.currentPlayer;
+        return copyGame;
+
+    }
+    
 }
