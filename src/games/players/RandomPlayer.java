@@ -42,4 +42,11 @@ public class RandomPlayer implements Player{
         return l.get(rdm.nextInt(tailleList));
     }
 
+    @Override 
+    public String toString(){  
+        
+        //le hash code permettant en pratique de distinguer plusieurs éventuels joueurs aléa-toires.
+        return "Joueur aléatoire n° " + this.hashCode();
+    }
+
 }
