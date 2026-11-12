@@ -5,10 +5,28 @@ import java.util.List;
 
 import games.players.Player;
 
+
+/**
+ * Classe representant le jeu du TicTacToe.
+ *
+ * Cette classe herite de AbstractGame et implemente les
+ * fonctionnalites propres au jeu du TicTacToe.
+ * Les joueurs jouent chacun leur tour en placant leur
+ * symbole sur une case libre du plateau.
+ * Le premier joueur qui aligne trois symboles gagne la partie.
+ */
 public class TicTacToe extends AbstractGame{
 
-    private String[][] grille;
-    public TicTacToe( String player1,String player2 ){
+
+    /**
+     * Construit une nouvelle partie de TicTacToe.
+     *
+     * @param player1 le premier joueur
+     * @param player2 le second joueur
+     */
+
+    protected String[][] grille;
+    public TicTacToe( Player player1,Player player2 ){
         super(player1, player2);
         this.grille = new String[3][3];
     }
@@ -16,17 +34,38 @@ public class TicTacToe extends AbstractGame{
     // accesseurs
     
     // ajoute des setters pour modifier la grille depuis l exterieur
+
+    /**
+     * Modifie le contenu d'une case de la grille.
+     *
+     * @param lineNumber le numero de la ligne
+     * @param columnNumber le numero de la colonne
+     * @param motif le symbole a placer dans la case
+     */
+
     public void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
 
     // ajoute un getter pour grill
+
+    /**
+     * Retourne la grille du jeu.
+     *
+     * @return la grille du jeu
+     */
     public String[][] getGrille(){
         return this.grille;
     }
 
+    /**
+     * doExecute un coup en placant le symbole du joueur courant
+     * dans la case demandee.
+     *
+     * @param caseNumber le numero de la case a jouer
+     */
     @Override 
-    public void doExecute(int caseNumber){
+    protected void doExecute(int caseNumber){
         if(!isValid(caseNumber) ){                // verifie le numero de case 
             System.out.println("Coup invalide !");
             return;
@@ -41,6 +80,13 @@ public class TicTacToe extends AbstractGame{
             
         }
     }
+
+    /**
+     * Indique si le coup est valide.
+     *
+     * @param caseNumber le numero de la case a verifier
+     * @return true si le coup est valide, false sinon
+     */
     @Override 
     public boolean isValid(int caseNumber){
         
@@ -57,6 +103,12 @@ public class TicTacToe extends AbstractGame{
         return true;
         
     }
+
+    /**
+     * Retourne le joueur gagnant.
+     *
+     * @return le joueur gagnant ou null si aucun joueur n'a gagne
+     */
     @Override 
     public Player getWinner(){
 		
@@ -84,7 +136,17 @@ public class TicTacToe extends AbstractGame{
 		
     }
 
-    public boolean wins(String player, int lineNumber,int columnNumber, int deltaRow, int deltaColumn){
+    /**
+     * Indique si un joueur possede un alignement gagnant.
+     *
+     * @param player le joueur a verifier
+     * @param lineNumber la ligne de depart
+     * @param columnNumber la colonne de depart
+     * @param deltaRow le deplacement en ligne
+     * @param deltaColumn le deplacement en colonne
+     * @return true si le joueur gagne, false sinon
+     */
+    public boolean wins(Player player, int lineNumber,int columnNumber, int deltaRow, int deltaColumn){
         String motif="";
         if(getFirstPlayer().equals(player)){
             motif = "x";
@@ -102,6 +164,11 @@ public class TicTacToe extends AbstractGame{
 
     }
     
+    /**
+     * Indique si la partie est terminee.
+     *
+     * @return true si la partie est terminee, false sinon
+     */
     @Override 
     public boolean isOver(){
 		
@@ -118,6 +185,12 @@ public class TicTacToe extends AbstractGame{
 		return true;
 		
 	}
+
+    /**
+     * Retourne une representation de la situation courante du jeu.
+     *
+     * @return une chaine representant le plateau
+     */
     @Override 
     public String situationToString(){
 		
@@ -140,6 +213,11 @@ public class TicTacToe extends AbstractGame{
 		return plateau;
 	}
     
+    /**
+     * Retourne la liste des coups valides.
+     *
+     * @return la liste des cases libres
+     */
     @Override 
     public List<Integer> validMoves(){
         List<Integer> moveList = new ArrayList<>();
@@ -153,15 +231,34 @@ public class TicTacToe extends AbstractGame{
         return moveList;
     }
 
+    /**
+     * Retourne une representation sous forme de chaine du coup donne.
+     *
+     * @param move le coup a convertir en chaine de caracteres
+     * @return une chaine representant le coup
+     */
     @Override 
     public String moveToString(int move){
         return "Le joueur joue la case "+move;
     }
 
+    /**
+     * Retourne une copie de la partie dans son etat actuel.
+     *
+     * @return une nouvelle instance du jeu ayant le meme etat que la partie courante
+     */
     @Override 
     public Game copy(){
         TicTacToe copyGame = new TicTacToe(getFirstPlayer() , getSecondPlayer());
-        
+        copyGame.currentPlayer = getCurrentPlayer();
+        String [][]copyGrille = new String[3][3];
+        for(int i=0;i<3;i++){
+            for(int j=0;j<3;j++){
+                copyGrille[i][j] = this.grille[i][j];
+            }
+        }
+        copyGame.grille = copyGrille;
+        return copyGame;        
     }
     
     
