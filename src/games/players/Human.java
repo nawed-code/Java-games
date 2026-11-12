@@ -1,6 +1,5 @@
 package games.players;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.List;
 
 import games.genericgames.Game;
@@ -15,6 +14,17 @@ public class Human implements Player {
         this.scanner = scan;
     }
 
+    /**
+     * Choisit un coup pour le joueur humain.
+     *
+     * Cette methode affiche les coups valides possibles,
+     * demande au joueur de saisir un coup via le Scanner,
+     * et redemande une saisie tant que le coup choisi
+     * n'est pas valide.
+     *
+     * @param game le jeu dans lequel le joueur doit effectuer un coup
+     * @return le coup choisi par le joueur
+     */
     @Override 
     public int chooseMove(Game game){
         int coupValide;
@@ -36,6 +46,16 @@ public class Human implements Player {
         }while(true);
         return coupValide;
 
+    }
+
+    /**
+     * Retourne le nom du joueur.
+     *
+     * @return le nom du joueur
+     */
+    @Override 
+    public String toString(){
+        return this.name;
     }
     
 }
