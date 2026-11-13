@@ -14,6 +14,19 @@ public class ExecutGame{
 
 
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  cette méthode choisit le joueur @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    /**
+     * Cree un joueur selon le type choisi.
+     *
+     * Si le type est "Humain", la methode demande le nom du joueur
+     * puis cree un joueur humain. Si le type est "Aleatoire",
+     * la methode cree un joueur aleatoire.
+     *
+     * @param player le type de joueur a creer
+     * @param scanner le scanner utilise pour lire les saisies de l utilisateur
+     * @param rand le generateur de nombres aleatoires utilise pour le joueur aleatoire
+     * @return le joueur cree, ou null si le type de joueur est invalide
+     */
     public static Player choosePlayer(String player,Scanner scanner, Random rand){  // j'utilise static car j'appelle cette methode avec main qui est static
         Player joueur=null;
 
@@ -31,6 +44,22 @@ public class ExecutGame{
         
     }
     //@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  cette méthode choisit le jeu.  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+    /**
+     * Cree un jeu selon le choix de l utilisateur.
+     *
+     * Si le jeu choisi est Nim, la methode demande le nombre
+     * initial d allumettes ainsi que le nombre maximal
+     * d allumettes pouvant etre retirees a chaque tour.
+     * Si le jeu choisi est TicTacToe, la methode demande
+     * si les indices doivent etre actives ou non.
+     *
+     * @param gameName le nom du jeu a creer
+     * @param scanner le scanner utilise pour lire les saisies de l utilisateur
+     * @param j1 le premier joueur
+     * @param j2 le deuxieme joueur
+     * @return le jeu cree, ou null si le nom du jeu est invalide
+     */
     public static AbstractGame chooseGame(String gameName,Scanner scanner,Player j1, Player j2){
         AbstractGame game =null;
         int nbInitialTaile;
