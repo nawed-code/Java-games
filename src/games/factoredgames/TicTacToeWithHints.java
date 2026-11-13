@@ -1,13 +1,34 @@
 package games.factoredgames;
 import java.util.ArrayList;
 
+
+/**
+ * Variante de TicTacToe qui affiche des indices.
+ * Les indices correspondent aux cases ou le joueur adverse
+ * pourrait gagner au prochain coup.
+ */
 public class TicTacToeWithHints extends TicTacToe{
     
+
+    /**
+     * Construit une nouvelle partie de TicTacToe avec indices.
+     *
+     * @param player1 premier joueur
+     * @param player2 second joueur
+     */
     public TicTacToeWithHints(String player1,String player2){
         super(player1, player2);
     }
 
     // les mthodes 
+
+    /**
+     * Retourne la liste des cases dangereuses.
+     * Une case est dangereuse si le joueur adverse peut gagner
+     * en la jouant au prochain coup.
+     *
+     * @return la liste des cases dangereuses
+     */
     public ArrayList<Integer> hints(){
 
         ArrayList<Integer> l = new ArrayList<>();
@@ -39,6 +60,13 @@ public class TicTacToeWithHints extends TicTacToe{
 
     }
 
+    /**
+     * Retourne une representation de la grille avec les indices.
+     * Les cases marquees par "!" indiquent les coups dangereux.
+     *
+     * @return une chaine de caracteres representant la grille
+     *         avec les indices
+     */
     public String situationToString(){
 
         ArrayList<Integer> l = hints();
