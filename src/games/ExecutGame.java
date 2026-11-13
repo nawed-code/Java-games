@@ -12,9 +12,26 @@ import games.plays.Orchestrator;
 
 public class ExecutGame{
 
+
+
+    public static Player choosePlayer(String player,Scanner scanner, Random rand){  // j'utilise static car j'appelle cette methode avec main qui est static
+        Player joueur=null;
+
+        if(player.equalsIgnoreCase("Humain") ){
+            System.out.println("Entrez le nom du joueur :");
+            String name = scanner.next();
+            joueur = new Human(name,scanner);
+            
+        }
+        if(player.equalsIgnoreCase("Aleatoire")){
+            joueur = new RandomPlayer(rand);
+            
+        }
+        return joueur;
+        
+    }
     public static void main(String[] args){
 
-        
         Random rand = new Random(123);          // un objet alieatoire 
         Scanner scanner = new Scanner(System.in);
         AbstractGame game=null;
@@ -22,69 +39,37 @@ public class ExecutGame{
         String secondPlayerAnswer;
         Player j1=null;
         Player j2=null;
-        while(true){
 
+
+        // choisir le joueur 
+        while (true) {
             System.out.println("Veuillez choisir le premier joueur !  Humain / aleatoire ?");
-            firstPlayerAnswer = scanner.next();
-
-            if(firstPlayerAnswer.equalsIgnoreCase("Humain") ){
-                System.out.println("Entrez le premier joueur :");
-                j1 = new Human(scanner.next(),scanner);
-
-                while (true){
-                    System.out.println("Veuillez choisir le deuxieme joueur !  Humain / Aleatoire ?");
-                    secondPlayerAnswer = scanner.next();
-                    if(secondPlayerAnswer.equalsIgnoreCase("Humain")){
-                        System.out.println("Entrez le deuxieme joueur :");
-                        j2 = new Human(scanner.next(),scanner); 
-                        break;
-                    }
-                    else if(secondPlayerAnswer.equalsIgnoreCase("Aleatoire")){
-                    j2 = new RandomPlayer(rand); 
-                    break;
-                    }
-                    else{
-                        System.out.println("Réponse invalide !");
-                    }
-                }
+            firstPlayerAnswer= scanner.next();
+            j1 = choosePlayer(firstPlayerAnswer,scanner,rand);
+            if(j1!=null){
                 break;
-
             }
-
-            else if(firstPlayerAnswer.equalsIgnoreCase("Aleatoire")){
-                j1 = new RandomPlayer(rand);
-
-                while (true) {
-                    System.out.println("Veuillez choisir le deuxieme joueur !  Humain / aleatoire ?");
-                    secondPlayerAnswer = scanner.next();
-                    if(secondPlayerAnswer.equalsIgnoreCase("Humain")){
-                        System.out.println("Entrez le deuxieme joueur :");
-                        j2 = new Human(scanner.next(),scanner); 
-                        break;
-                    }
-                    else if(secondPlayerAnswer.equalsIgnoreCase("Aleatoire")){
-                    j2 = new RandomPlayer(rand); 
-                    break;
-                    }
-                    else{
-                        System.out.println("Réponse invalide !");
-                    }
-                
-                }
+            System.out.println("Réponse invalide !");
+        }
+            
+        while (true) {
+            System.out.println("Veuillez choisir le deuxieme joueur !  Humain / Aleatoire ?");
+            secondPlayerAnswer = scanner.next();
+            j2 = choosePlayer(secondPlayerAnswer,scanner,rand);
+            if(j2!=null){
                 break;
-
             }
-            else{
-                System.out.println("Réponse invalide !");
-            }
+            System.out.println("Réponse invalide !");
         }
 
+
+        // choisir le jeu 
         while (true){
 
             System.out.println("Quel jeu voulez-vous jouer ?  Nim / TicTacToe");
             String gameName = scanner.next();
 
-            if(gameName.equals("Nim") || gameName.equals("nim")){  
+            if(gameName.equalsIgnoreCase("Nim")){  
 
                 System.out.println("Entrez la taille initiale allumettes :");
                 int nbInitialTaile  = scanner.nextInt();
@@ -94,7 +79,7 @@ public class ExecutGame{
                 game = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
                 break;
             }
-            else if(gameName.equals("TicTacToe") || gameName.equals("tictactoe")){
+            else if(gameName.equalsIgnoreCase("TicTacToe")){
                 String answer;
                 while(true){
 
