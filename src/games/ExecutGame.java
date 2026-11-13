@@ -23,13 +23,51 @@ public class ExecutGame{
             joueur = new Human(name,scanner);
             
         }
-        if(player.equalsIgnoreCase("Aleatoire")){
+        else if(player.equalsIgnoreCase("Aleatoire")){
             joueur = new RandomPlayer(rand);
             
         }
         return joueur;
         
     }
+
+    public static AbstractGame chooseGame(String gameName,Scanner scanner,Player j1, Player j2){
+        AbstractGame game =null;
+        if(gameName.equalsIgnoreCase("Nim")){  
+
+            System.out.println("Entrez la taille initiale allumettes :");
+            int nbInitialTaile  = scanner.nextInt();
+
+            System.out.println("Entrez le nombre maximale d allumettes :");
+            int nbMaxAllumette  = scanner.nextInt();
+            game = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
+            
+        }
+        if(gameName.equalsIgnoreCase("TicTacToe")){
+            String answer;
+            while(true){
+
+                System.out.println("Voulez-vous jouer avec ou sans indices ? oui / non ");
+                answer = scanner.next();
+
+                if(answer.equals("oui")){
+                    game = new TicTacToeWithHints(j1,j2);
+                    break;
+                }
+                else if(answer.equals("non")){
+                    game = new TicTacToe(j1,j2);
+                    break;
+                }
+                else{
+                    System.out.println("Réponse invalide !");
+                }
+            }
+        }
+        return game;
+    }
+
+
+
     public static void main(String[] args){
 
         Random rand = new Random(123);          // un objet alieatoire 
@@ -41,7 +79,8 @@ public class ExecutGame{
         Player j2=null;
 
 
-        // choisir le joueur 
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     choisir le joueur     @@@@@@@@@@@@@@@@@@@@@@@@
+        
         while (true) {
             System.out.println("Veuillez choisir le premier joueur !  Humain / aleatoire ?");
             firstPlayerAnswer= scanner.next();
@@ -63,49 +102,18 @@ public class ExecutGame{
         }
 
 
-        // choisir le jeu 
+        //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     choisir le jeu      @@@@@@@@@@@@@@@@@@@@@@@@
         while (true){
-
+            
             System.out.println("Quel jeu voulez-vous jouer ?  Nim / TicTacToe");
             String gameName = scanner.next();
-
-            if(gameName.equalsIgnoreCase("Nim")){  
-
-                System.out.println("Entrez la taille initiale allumettes :");
-                int nbInitialTaile  = scanner.nextInt();
-
-                System.out.println("Entrez le nombre maximale d allumettes :");
-                int nbMaxAllumette  = scanner.nextInt();
-                game = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
-                break;
+            game = chooseGame(gameName, scanner,j1,j2);
+            if (game!=null) {
+                break;                
             }
-            else if(gameName.equalsIgnoreCase("TicTacToe")){
-                String answer;
-                while(true){
+            System.out.println("Réponse invalide !");
 
-                    System.out.println("Voulez-vous jouer avec ou sans indices ? oui / non ");
-                    answer = scanner.next();
-
-                    if(answer.equals("oui")){
-                        game = new TicTacToeWithHints(j1,j2);
-                        break;
-                    }
-                    else if(answer.equals("non")){
-                        game = new TicTacToe(j1,j2);
-                        break;
-                    }
-                    else{
-                            System.out.println("Réponse invalide !");
-                    }
-                }
-                break;
-            }
-            else{
-                System.out.println("Réponse invalide !");
-            }
         }
-
-        
         Orchestrator orchestrator = new Orchestrator(game);
         orchestrator.play();
         scanner.close();
