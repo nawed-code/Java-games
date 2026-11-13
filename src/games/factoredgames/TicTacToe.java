@@ -1,7 +1,19 @@
 package games.factoredgames;
 
+
+/**
+ * Represente une partie de TicTacToe.
+ * Deux joueurs jouent chacun leur tour en placant un symbole
+ * sur une grille de 3 par 3.
+ */
 public class TicTacToe extends AbstractGame{
 
+    /**
+     * Construit une nouvelle partie de TicTacToe.
+     *
+     * @param player1 premier joueur
+     * @param player2 second joueur
+     */
     private String[][] grille;
     public TicTacToe( String player1,String player2 ){
         super(player1, player2);
@@ -11,15 +23,34 @@ public class TicTacToe extends AbstractGame{
     // accesseurs
     
     // ajoute des setters pour modifier la grille depuis l exterieur
+
+    /**
+     * Modifie le contenu d une case de la grille.
+     *
+     * @param lineNumber numero de ligne
+     * @param columnNumber numero de colonne
+     * @param motif symbole a placer
+     */
     public void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
 
     // ajoute un getter pour grill
+
+    /**
+     * Retourne la grille du jeu.
+     *
+     * @return la grille
+     */
     public String[][] getGrille(){
         return this.grille;
     }
 
+    /**
+     * Execute un coup en placant le symbole du joueur courant.
+     *
+     * @param caseNumber numero de la case a jouer
+     */
     @Override 
     public void doExecute(int caseNumber){
         if(!isValid(caseNumber) ){                // verifie le numero de case 
@@ -37,6 +68,12 @@ public class TicTacToe extends AbstractGame{
         }
     }
 
+    /**
+     * Indique si une case peut etre jouee.
+     *
+     * @param caseNumber numero de la case
+     * @return true si le coup est valide, false sinon
+     */
     public boolean isValid(int caseNumber){
         
         int lineNumber = caseNumber / 3;
@@ -53,6 +90,11 @@ public class TicTacToe extends AbstractGame{
         
     }
 
+    /**
+     * Retourne le gagnant de la partie.
+     *
+     * @return le gagnant, ou null si aucun joueur n a gagne
+     */
     public String getWinner(){
 		
 		for (int i = 0; i < 3; i++) {
@@ -79,6 +121,16 @@ public class TicTacToe extends AbstractGame{
 		
     }
 
+    /**
+     * Indique si un joueur possede trois symboles alignes.
+     *
+     * @param player joueur a verifier
+     * @param lineNumber ligne de depart
+     * @param columnNumber colonne de depart
+     * @param deltaRow deplacement en ligne
+     * @param deltaColumn deplacement en colonne
+     * @return true si le joueur gagne, false sinon
+     */
     public boolean wins(String player, int lineNumber,int columnNumber, int deltaRow, int deltaColumn){
         String motif="";
         if(getFirstPlayer().equals(player)){
@@ -97,6 +149,11 @@ public class TicTacToe extends AbstractGame{
 
     }
     
+    /**
+     * Indique si la partie est terminee.
+     *
+     * @return true si la partie est terminee, false sinon
+     */
     public boolean isOver(){
 		
 		if(this.getWinner() != null){
@@ -112,6 +169,12 @@ public class TicTacToe extends AbstractGame{
 		return true;
 		
 	}
+
+    /**
+     * Retourne une representation de la grille.
+     *
+     * @return une chaine de caracteres representant la grille
+     */
     public String situationToString(){
 		
 		String plateau = "  - - -" + System.lineSeparator();
