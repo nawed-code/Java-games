@@ -13,7 +13,7 @@ import games.plays.Orchestrator;
 public class ExecutGame{
 
 
-
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  cette méthode choisit le joueur @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public static Player choosePlayer(String player,Scanner scanner, Random rand){  // j'utilise static car j'appelle cette methode avec main qui est static
         Player joueur=null;
 
@@ -30,16 +30,30 @@ public class ExecutGame{
         return joueur;
         
     }
-
+    //@@@@@@@@@@@@@@@@@@@@@@@@@@@@.  cette méthode choisit le jeu.  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
     public static AbstractGame chooseGame(String gameName,Scanner scanner,Player j1, Player j2){
         AbstractGame game =null;
+        int nbInitialTaile;
+        int nbMaxAllumette;
         if(gameName.equalsIgnoreCase("Nim")){  
 
             System.out.println("Entrez la taille initiale allumettes :");
-            int nbInitialTaile  = scanner.nextInt();
+            while(!scanner.hasNextInt()){    							// évite de planter si ce n'est pas en entier
+				System.out.println("Erreur : Veuillez entrer un entier !");
+				scanner.next();
+				System.out.println("Entrez la taille initiale allumettes :");
+							
+			}
+            nbInitialTaile  = scanner.nextInt();
 
             System.out.println("Entrez le nombre maximale d allumettes :");
-            int nbMaxAllumette  = scanner.nextInt();
+            while(!scanner.hasNextInt()){    							// évite de planter si ce n'est pas en entier
+				System.out.println("Erreur : Veuillez entrer un entier !");
+				scanner.next();
+				System.out.println("Entrez le nombre maximale d allumettes :");
+							
+			}
+            nbMaxAllumette  = scanner.nextInt();
             game = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
             
         }
@@ -80,7 +94,7 @@ public class ExecutGame{
 
 
         //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@     choisir le joueur     @@@@@@@@@@@@@@@@@@@@@@@@
-        
+
         while (true) {
             System.out.println("Veuillez choisir le premier joueur !  Humain / aleatoire ?");
             firstPlayerAnswer= scanner.next();
