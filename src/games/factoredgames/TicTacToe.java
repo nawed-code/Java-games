@@ -31,7 +31,7 @@ public class TicTacToe extends AbstractGame{
      * @param columnNumber numero de colonne
      * @param motif symbole a placer
      */
-    public void setGrille(int lineNumber, int columnNumber , String motif){
+    protected void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
 

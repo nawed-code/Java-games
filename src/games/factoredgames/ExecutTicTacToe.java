@@ -42,6 +42,12 @@ public class ExecutTicTacToe{
                 int numOfCase;
                 do{
                         System.out.println(" - Entrer le numero de la case ? ");
+                        while(!scanner.hasNextInt()){   //tant que ce n'est pas un entier
+                                System.out.println("Erreur : Veuillez entrer un entier !");
+				scanner.next();         //vide le scanner 
+				System.out.println(" - Entrer le numero de la case ? ");
+
+                        }
                         numOfCase = scanner.nextInt();
                         
                         if(!play.isValid(numOfCase)){

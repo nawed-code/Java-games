@@ -67,6 +67,7 @@ public class TicTacToeWithHints extends TicTacToe{
      * @return une chaine de caracteres representant la grille
      *         avec les indices
      */
+    @Override 
     public String situationToString(){
 
         ArrayList<Integer> l = hints();
