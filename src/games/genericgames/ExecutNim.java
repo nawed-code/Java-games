@@ -14,9 +14,19 @@ public class ExecutNim{
             String j2 = scanner.next();   
 
             System.out.println("Entrez la taille initiale allumettes :");
+            while (!scanner.hasNextInt()){
+                System.out.println("Erreur : Entrez un entier :");
+                scanner.next();     //vide le scanner
+                System.out.println("Entrez la taille initiale allumettes :");
+            }
             int nbInitialTaile  = scanner.nextInt();
 
             System.out.println("Entrez le nombre maximale d allumettes :");
+            while (!scanner.hasNextInt()){
+                System.out.println("Erreur : Entrez un entier :");
+                scanner.next();
+                System.out.println("Entrez le nombre maximale d allumettes :");
+            }
             int nbMaxAllumette  = scanner.nextInt();
 
             Nim play = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
@@ -32,6 +42,11 @@ public class ExecutNim{
                 int nbRetiree;
                 do{
                     System.out.println("Combien retirez-vous ? ");
+                    while (!scanner.hasNextInt()){
+                        System.out.println("Erreur : Entrez un entier :");
+                        scanner.next();
+                        System.out.println("Combien retirez-vous ? ");
+                    }
                     nbRetiree = scanner.nextInt();
                     if (!play.isValid(nbRetiree)){
                         System.out.println("Vous devez retirer entre 1 et "+ play.getMaxMatches() + " allumettes.");
