@@ -4,16 +4,22 @@ import java.util.Scanner;
 public class ExecutNim{
 
         public static void main(String[] args){
-            Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);  //pour lire des donees depuis L'entree standard
 
             System.out.println("Entrez le premier joueur :");
-            String j1 = scanner.next();
+            String j1 = scanner.next();      //Le programme attend que l'utilisateur tape un mot.
 
             System.out.println("Entrez le deuxieme joueur :");
             String j2 = scanner.next();   
 
             System.out.println("Entrez la taille initiale allumettes :");
-            int nbInitialTaile  = scanner.nextInt();
+            int nbInitialTaile;
+            while(!scanner.hasNextInt()){ //Tant que le prochain element n'est pas un entier.
+                System.out.println("Erreur : Veuillez entrer un entier !");
+                scanner.next();     //supprimer la mauvaise saisie
+                System.out.println("Entrez la taille initiale allumettes :");
+            }
+            nbInitialTaile  = scanner.nextInt();
 
             System.out.println("Entrez le nombre maximale d allumettes :");
             int nbMaxAllumette  = scanner.nextInt();
@@ -31,6 +37,12 @@ public class ExecutNim{
                 int nbRetiree;
                 do{
                     System.out.println("Combien retirez-vous ? ");
+                    while(!scanner.hasNextInt()){
+                        System.out.println("Erreur : Veuillez entrer un entier !");
+                        scanner.next();
+                        System.out.println("Combien retirez-vous ? ");
+                        
+                    }
                     nbRetiree = scanner.nextInt();
                     if (!play.isValid(nbRetiree)){
                         System.out.println("Vous devez retirer entre 1 et "+ play.getMaxMatches() + " allumettes.");
