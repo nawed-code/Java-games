@@ -1,5 +1,8 @@
 package games.genericgames;
 import java.util.ArrayList;
+import java.util.List;
+import games.players.Player;
+import games.players.Human;
 
 
 /**
@@ -16,7 +19,7 @@ public class TicTacToeWithHints extends TicTacToe{
      * @param player1 premier joueur
      * @param player2 second joueur
      */
-    public TicTacToeWithHints(String player1,String player2){
+    public TicTacToeWithHints(Player player1,Player player2){
         super(player1, player2);
     }
 
@@ -29,11 +32,11 @@ public class TicTacToeWithHints extends TicTacToe{
      *
      * @return la liste des cases dangereuses
      */
-    public ArrayList<Integer> hints(){
+    public List<Integer> hints(){
 
-        ArrayList<Integer> l = new ArrayList<>();
+        List<Integer> l = new ArrayList<>();
         // pour trouver le joeur adversaire 
-        String adversaire;
+        Player adversaire;
         String markAdversaire="";
         if(getCurrentPlayer().equals(getFirstPlayer())){
             adversaire = getSecondPlayer();
@@ -71,25 +74,27 @@ public class TicTacToeWithHints extends TicTacToe{
     @Override 
     public String situationToString(){
 
-        ArrayList<Integer> l = hints();
+        List<Integer> l = hints();
 		String[][] grille = getGrille();
-		String plateau = "";
+		String plateau = "  - - -" + System.lineSeparator();
 		for(int i=0; i < 3;i++){
+            plateau = plateau+"| ";
 			for(int j =0;j< 3;j++){
 				if(grille[i][j] == null && l.contains(3*i+j)){
-                    plateau +="!";
+                    plateau +="! ";
                 }
                 else if(grille[i][j] == null){
-                    plateau +=".";
+                    plateau =plateau+(3*i+j)+" ";
                 }
                 else{
-                    plateau += grille[i][j];
+                    plateau = plateau+this.grille[i][j]+" ";
                 }
 			
 			}
-			plateau +=System.lineSeparator();
+			plateau = plateau+" |"+System.lineSeparator();
 			
 		}
+        plateau = plateau+"  - - -";
 		return plateau;
 	}
 
