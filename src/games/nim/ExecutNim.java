@@ -13,12 +13,19 @@ public class ExecutNim{
             String j2 = scanner.next();   
 
             System.out.println("Entrez la taille initiale d'allumettes :");
-            String initialTaile  = scanner.next();
-            int nbInitialTaile = Integer.parseInt(initialTaile);
+            while (!scanner.hasNextInt()){
+                System.out.println("Erreur : Entrez un entier !");
+                scanner.next();
+                System.out.println("Entrez la taille initiale d'allumettes :");
+            }
+            int nbInitialTaile = scanner.nextInt();
 
             System.out.println("Entrez le nombre maximale d'allumettes :");
-            String maxAllumette  = scanner.next();
-            int nbMaxAllumette = Integer.parseInt(maxAllumette);
+            while (!scanner.hasNextInt()){
+                System.out.println("Erreur : Entrez un entier !");
+                scanner.next();
+                System.out.println("Entrez le nombre maximale d'allumettes :");            }
+            int nbMaxAllumette = scanner.nextInt();
 
             Nim play = new Nim(nbInitialTaile , nbMaxAllumette , j1, j2);
 
@@ -31,8 +38,12 @@ public class ExecutNim{
                 System.out.println(play.situationToString());
                 System.out.println("le tour de "+play.getCurrentPlayer());
                 System.out.println("Combien retirez-vous ? ");
-                String retireAllumete = scanner.next();
-                int nbRetiree = Integer.parseInt(retireAllumete);
+                while (!scanner.hasNextInt()){
+                    System.out.println("Erreur : Entrez un entier !");
+                    scanner.next();
+                    System.out.println("Combien retirez-vous ? ");
+                }
+                int nbRetiree = scanner.nextInt();
                 if (!play.isValid(nbRetiree)){
                     System.out.println("Coup invalide !");
                     continue;
