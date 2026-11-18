@@ -1,6 +1,8 @@
 package games.genericgames;
 import java.util.Scanner;
 
+import games.players.Human;
+import  games.players.Player;
 
 public class ExecutNim{
 
@@ -8,10 +10,10 @@ public class ExecutNim{
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Entrez le premier joueur :");
-            String j1 = scanner.next();
+            Player j1 = new Human(scanner.next(), scanner);
 
             System.out.println("Entrez le deuxieme joueur :");
-            String j2 = scanner.next();   
+            Player j2 = new Human(scanner.next(), scanner);  
 
             System.out.println("Entrez la taille initiale allumettes :");
             while (!scanner.hasNextInt()){

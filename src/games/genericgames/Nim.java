@@ -1,7 +1,6 @@
 package games.genericgames;
 
 import games.players.Player;
-
 import java.util.ArrayList;
 import java.util.List;
 

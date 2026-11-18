@@ -35,9 +35,9 @@ public class Human implements Player {
         do{
             System.out.println("Veuillez choisir un coup valide !");
                 while(!scanner.hasNextInt()){    	
-					System.out.println("Erreur : Veuillez entrer un nombre valide !");
+					System.out.println("Erreur : Veuillez entrer un nombre !");
 					scanner.next();
-						
+					System.out.println("Veuillez choisir un coup valide !");
 				}
             coupValide = scanner.nextInt();
             if(l.contains(coupValide)){

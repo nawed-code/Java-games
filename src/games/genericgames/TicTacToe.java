@@ -2,7 +2,6 @@ package games.genericgames;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import games.players.Player;
 
 
@@ -43,7 +42,7 @@ public class TicTacToe extends AbstractGame{
      * @param motif le symbole a placer dans la case
      */
 
-    public void setGrille(int lineNumber, int columnNumber , String motif){
+    protected void setGrille(int lineNumber, int columnNumber , String motif){
         this.grille[lineNumber][columnNumber] = motif;
     }
 

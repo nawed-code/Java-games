@@ -28,11 +28,16 @@ public class Orchestrator{
      */
     public void play(){
 
+        System.out.println("Le premier joueur est :"+game.getFirstPlayer());
+        System.out.println("Le second joueur est :"+game.getSecondPlayer());
+
         while (!game.isOver()){
             System.out.println(game.situationToString());
             Player currentPlayer = game.getCurrentPlayer();
+            System.out.println("Le tour de "+currentPlayer);
             int coupValide  = currentPlayer.chooseMove(game);
             game.execute(coupValide);
+            System.out.println("Le joueur "+currentPlayer+" vient de jouer -> "+coupValide);
 
         }
         System.out.println("Le jeu est termine");

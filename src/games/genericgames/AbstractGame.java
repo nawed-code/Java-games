@@ -71,6 +71,7 @@ public abstract class AbstractGame implements Game{
      *
      * @return le premier joueur
      */
+    @Override 
     public Player getFirstPlayer(){
         return this.firstPlayer;
     } 
@@ -80,6 +81,7 @@ public abstract class AbstractGame implements Game{
      *
      * @return le second joueur
      */
+    @Override 
     public Player getSecondPlayer(){
         return this.secondPlayer;
     }

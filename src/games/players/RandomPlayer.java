@@ -35,17 +35,17 @@ public class RandomPlayer implements Player{
     @Override 
     public int chooseMove(Game game){
         List <Integer> l = game.validMoves();
-        if(l.isEmpty()){                        // je vérifie la liste 
+        if(l.isEmpty()){                        // je verifie la liste 
             throw new IllegalStateException("Aucun coup valide");
         }
         int tailleList = l.size();
-        return l.get(rdm.nextInt(tailleList));
+        return l.get(rdm.nextInt(tailleList));  //un entier entre 0 et tailleList exclu
     }
 
     @Override 
     public String toString(){  
-        
-        //le hash code permettant en pratique de distinguer plusieurs éventuels joueurs aléa-toires.
+
+        //le hash code permettant en pratique de distinguer plusieurs éventuels joueurs alea-toires.
         return "Joueur aléatoire n° " + this.hashCode();
     }
 

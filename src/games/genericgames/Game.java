@@ -76,5 +76,23 @@ public interface Game {
      * @return une nouvelle instance du jeu ayant le meme etat que la partie courante
      */
     public Game copy();
+
+
+    // j'ajoute les deux méthodes suivantes car je les utilise dans chaque partie
+
+    /**
+     * Retourne le premier joueur.
+     *
+     * @return le premier joueur.
+     */
+    public Player getFirstPlayer();
+
+    /**
+     * Retourne le second joueur.
+     *
+     * @return le second joueur.
+     */
+    public Player getSecondPlayer();
+
     
 }
